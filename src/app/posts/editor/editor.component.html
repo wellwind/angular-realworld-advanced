@@ -11,7 +11,7 @@
             <textarea class="form-control" rows="8" placeholder="Write your post (in markdown)" formControlName="body"></textarea>
           </fieldset>
           <fieldset class="form-group">
-            <input class="form-control" type="text" placeholder="Enter tags">
+            <input class="form-control" type="text" placeholder="Enter tags" #tag (keyup.enter)="addTag(tag.value)">
             <div class="tag-list" formArrayName="tags">
               <span class="label label-pill label-default" *ngFor="let tag of tags.controls">
                 <i class="ion-close-round"></i> {{ tag.value }}</span>

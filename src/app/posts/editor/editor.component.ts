@@ -24,4 +24,10 @@ export class EditorComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  addTag(tag) {
+    if (tag) {
+      this.tags.push(new FormControl(tag));
+    }
+  }
 }
