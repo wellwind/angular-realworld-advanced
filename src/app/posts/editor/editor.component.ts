@@ -34,4 +34,8 @@ export class EditorComponent implements OnInit {
   removeTag(index: number) {
     this.tags.removeAt(index);
   }
+
+  createPost() {
+    console.log(this.post.value);
+  }
 }
