@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { Route } from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 import { EditorComponent } from './editor/editor.component';
 import { PostComponent } from './post/post.component';
 import { PostsComponent } from './posts/posts.component';
@@ -26,7 +25,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: []
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class PostsRoutingModule {}
