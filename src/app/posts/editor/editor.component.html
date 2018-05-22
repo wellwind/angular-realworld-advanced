@@ -13,8 +13,8 @@
           <fieldset class="form-group">
             <input class="form-control" type="text" placeholder="Enter tags" #tag (keyup.enter)="addTag(tag.value)">
             <div class="tag-list" formArrayName="tags">
-              <span class="label label-pill label-default" *ngFor="let tag of tags.controls">
-                <i class="ion-close-round"></i> {{ tag.value }}</span>
+              <span class="label label-pill label-default" *ngFor="let tag of tags.controls; let index = index">
+                <i class="ion-close-round" (click)="removeTag(index)"></i> {{ tag.value }}</span>
             </div>
           </fieldset>
           <button class="btn btn-lg btn-primary pull-xs-right">

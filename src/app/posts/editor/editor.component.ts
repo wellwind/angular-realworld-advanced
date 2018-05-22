@@ -30,4 +30,8 @@ export class EditorComponent implements OnInit {
       this.tags.push(new FormControl(tag));
     }
   }
+
+  removeTag(index: number) {
+    this.tags.removeAt(index);
+  }
 }
