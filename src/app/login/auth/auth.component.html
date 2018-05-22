@@ -5,15 +5,33 @@
       <div class="col-md-6 col-md-offset-3 col-xs-12">
         <h1 class="text-xs-center">Sign in</h1>
 
-        <form>
-          <fieldset class="form-group">
-            <input name="email" class="form-control form-control-lg" type="text" placeholder="Email" [(ngModel)]="loginData.email" #email="ngModel">
+        <form #loginForm="ngForm">
+          <fieldset class="form-group" [ngClass]="{'has-danger': email.dirty && email.invalid}">
+            <input name="email" class="form-control form-control-lg" type="text" placeholder="Email" [(ngModel)]="loginData.email" required
+              email #email="ngModel">
+            <span *ngIf="email.dirty && email.invalid">
+              <span *ngIf="email.errors['required']">
+                * 請輸入 Email
+              </span>
+              <span *ngIf="email.errors['email']">
+                * Email 格式不正確
+              </span>
+            </span>
           </fieldset>
-          {{ email.value }}
-          <fieldset class="form-group">
-            <input name="password" class="form-control form-control-lg" type="password" placeholder="Password" [(ngModel)]="loginData.password">
+
+          <fieldset class="form-group" [ngClass]="{'has-danger': password.dirty && password.invalid}">
+            <input name="password" class="form-control form-control-lg" type="password" placeholder="Password" [(ngModel)]="loginData.password"
+              minlength="4" required #password="ngModel">
+            <span *ngIf="password.dirty && password.invalid">
+              <span *ngIf="password.errors['required']">
+                * 請輸入密碼
+              </span>
+              <span *ngIf="password.errors['minlength']">
+                * 密碼長度必須大於等於 4
+              </span>
+            </span>
           </fieldset>
-          <button class="btn btn-lg btn-primary pull-xs-right" (click)="doLogin()">
+          <button class="btn btn-lg btn-primary pull-xs-right" (click)="doLogin()" [disabled]="loginForm.invalid">
             Sign in
           </button>
         </form>
