@@ -15,5 +15,9 @@ export class PostComponent implements OnInit {
     this.route.params.subscribe(query => {
       this.postId = query['id'];
     });
+
+    this.route.queryParams.subscribe(query => {
+      console.log(query);
+    });
   }
 }
