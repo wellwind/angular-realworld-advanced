@@ -17,6 +17,13 @@
                 <i class="ion-close-round" (click)="removeTag(index)"></i> {{ tag.value }}</span>
             </div>
           </fieldset>
+
+          <section formGroupName="seo">
+            <fieldset class="form-group">
+              <input class="form-control" type="text" placeholder="Meta tags" formControlName="meta">
+            </fieldset>
+          </section>
+
           <button type="button" class="btn btn-lg btn-primary pull-xs-right" (click)="createPost()">
             Create Post
           </button>

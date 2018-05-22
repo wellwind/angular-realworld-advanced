@@ -14,7 +14,10 @@ export class EditorComponent implements OnInit {
       new FormControl('Angular'),
       new FormControl('HTML'),
       new FormControl('CSS')
-    ])
+    ]),
+    seo: new FormGroup({
+      meta: new FormControl('angular')
+    })
   });
 
   get tags(): FormArray {
