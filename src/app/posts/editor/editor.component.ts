@@ -33,6 +33,14 @@ export class EditorComponent implements OnInit {
     return this.post.get('tags') as FormArray;
   }
 
+  get title(): AbstractControl {
+    return this.post.get('title');
+  }
+
+  get body(): AbstractControl {
+    return this.post.get('body');
+  }
+
   constructor() {}
 
   ngOnInit() {}
