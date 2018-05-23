@@ -5,8 +5,6 @@ import {
   Router,
   RouterStateSnapshot
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/internal/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +17,7 @@ export class AuthGuardService implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> {
-    if (!this.hasLogin) {
-      this.router.navigate(['/', 'login']);
-    }
-    return of(true).pipe(delay(300));
+  ): boolean {
+    return !!localStorage.getItem('token');
   }
 }
