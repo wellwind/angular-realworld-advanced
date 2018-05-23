@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { AuthGuardService } from '../auth-guard.service';
 import { EditorComponent } from './editor/editor.component';
 import { PostComponent } from './post/post.component';
 import { PostsComponent } from './posts/posts.component';
@@ -20,7 +21,8 @@ const routes: Route[] = [
   },
   {
     path: 'create',
-    component: EditorComponent
+    component: EditorComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
