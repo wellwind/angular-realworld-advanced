@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-editor',
@@ -8,8 +14,11 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class EditorComponent implements OnInit {
   post = new FormGroup({
-    title: new FormControl('default title'),
-    body: new FormControl(),
+    title: new FormControl('default title', Validators.required),
+    body: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(10)
+    ]),
     tags: new FormArray([
       new FormControl('Angular'),
       new FormControl('HTML'),
