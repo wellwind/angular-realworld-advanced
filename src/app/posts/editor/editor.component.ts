@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { PostService } from '../../post.service';
 
 @Component({
   selector: 'app-editor',
@@ -41,7 +42,7 @@ export class EditorComponent implements OnInit {
     return this.post.get('body');
   }
 
-  constructor() {}
+  constructor(private postService: PostService) {}
 
   ngOnInit() {}
 
@@ -56,6 +57,8 @@ export class EditorComponent implements OnInit {
   }
 
   createPost() {
-    console.log(this.post.value);
+    this.postService.createPost(this.post.value).subscribe(article => {
+      console.log(article);
+    });
   }
 }
