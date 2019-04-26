@@ -10,14 +10,16 @@ import {
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
-  hasLogin = false;
-
   constructor(private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    return !!localStorage.getItem('token');
+    if (!localStorage.getItem('token')) {
+      this.router.navigateByUrl('/login');
+    }
+
+    return true;
   }
 }
