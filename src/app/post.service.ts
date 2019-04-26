@@ -36,7 +36,7 @@ export class PostService {
     };
 
     return this.httpClient.post(
-      'https://conduit.productionready.io/api/articles',
+      'http://localhost:3000/api/articles',
       postBody,
       httpOptions
     );
