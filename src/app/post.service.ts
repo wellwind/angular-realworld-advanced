@@ -1,11 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Post } from './post';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
   constructor(private httpClient: HttpClient) {}
+
+  getPost(): Observable<Post> {
+    return this.httpClient.get<Post>('http://localhost:3000/api/articles');
+  }
 
   createPost(post) {
     const postBody = {
