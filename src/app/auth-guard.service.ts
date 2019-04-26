@@ -3,7 +3,8 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   Router,
-  RouterStateSnapshot
+  RouterStateSnapshot,
+  UrlTree
 } from '@angular/router';
 
 @Injectable({
@@ -15,9 +16,10 @@ export class AuthGuardService implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean {
+  ): boolean | UrlTree {
     if (!localStorage.getItem('token')) {
-      this.router.navigateByUrl(`/login?redirect=${encodeURI(state.url)}`);
+      // this.router.navigateByUrl(`/login?redirect=${encodeURI(state.url)}`);
+      return this.router.parseUrl(`/login?redirect=${encodeURI(state.url)}`);
     }
 
     return true;
