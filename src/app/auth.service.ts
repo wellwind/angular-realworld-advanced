@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/internal/operators';
@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/internal/operators';
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  login(email, password): Observable<string> {
+  login(email: string, password: string): Observable<string> {
     const body = {
       user: {
         email: email,
@@ -18,9 +18,10 @@ export class AuthService {
     };
 
     return this.httpClient
-      .post('https://conduit.productionready.io/api/users/login', body)
+      .post('http://localhost:3000/api/users/login', body)
       .pipe(
-        catchError(err => {
+        catchError((err: HttpErrorResponse) => {
+          alert(err.error.body[0]);
           return of({
             user: {}
           });
