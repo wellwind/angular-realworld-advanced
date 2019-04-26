@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PostService } from '../../post.service';
 
 @Component({
@@ -42,7 +43,7 @@ export class EditorComponent implements OnInit {
     return this.post.get('body');
   }
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -59,6 +60,7 @@ export class EditorComponent implements OnInit {
   createPost() {
     this.postService.createPost(this.post.value).subscribe(article => {
       console.log(article);
+      this.router.navigate(['/posts']);
     });
   }
 }
