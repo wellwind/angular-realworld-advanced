@@ -7,7 +7,7 @@ import { PostService } from 'src/app/post.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  post$ = this.postService.getPost();
+  post$ = this.postService.getPostList();
 
   constructor(private postService: PostService) {}
 

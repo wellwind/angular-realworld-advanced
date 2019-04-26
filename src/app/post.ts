@@ -2,6 +2,10 @@ export interface Post {
   articles: Article[];
 }
 
+export interface SinglePost {
+  article: Article;
+}
+
 export interface Article {
   slug: string;
   title: string;
