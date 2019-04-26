@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -13,7 +13,11 @@ export class AuthComponent implements OnInit {
     password: ''
   };
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {}
 
@@ -23,7 +27,9 @@ export class AuthComponent implements OnInit {
       .subscribe(token => {
         if (token) {
           localStorage.setItem('token', token);
-          this.router.navigate(['/']);
+          this.router.navigateByUrl(
+            this.route.snapshot.queryParamMap.get('redirect')
+          );
         }
       });
   }

@@ -17,7 +17,7 @@ export class AuthGuardService implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     if (!localStorage.getItem('token')) {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl(`/login?redirect=${encodeURI(state.url)}`);
     }
 
     return true;
